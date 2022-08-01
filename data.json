@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Darwin's Game",
+    "episodes": 12,
+    "score": 8
+  },
+  {
+    "id": 2,
+    "title": "Redo of the Healer",
+    "episodes": 12,
+    "score": 7
+  },
+  {
+    "id": 3,
+    "title": "One Punch Man",
+    "episodes": 12,
+    "score": 8
+  },
+  {
+    "id": 4,
+    "title": "Aho Girl",
+    "episodes": 12,
+    "score": 8
+  },
+  {
+    "id": 5,
+    "title": "Akame Ga Kill",
+    "episodes": 24,
+    "score": 9
+  }
+]
