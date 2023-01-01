@@ -76,7 +76,7 @@ const animeList = [
 ];
 
 // Pre-load anime list
-if (animeList.length > 0) {
+if(animeList.length > 0) {
   updateAnimeList();
 }
 
@@ -87,13 +87,15 @@ for(let i = 0; i < 10; ++i) {
   scoreInput.appendChild(option);
 }
 
+// Initialize dropdown value (score)
+scoreInput.value = 5;
+
 // Submitting a new anime
 animeForm.addEventListener('submit', addAnime);
-
 function addAnime(e) {
   e.preventDefault();
 
-  if (titleInput.value === '' || episodesInput.value === '' || statusInput.value === '' || scoreInput.value === '') {
+  if(titleInput.value === '' || episodesInput.value === '' || statusInput.value === '' || scoreInput.value === '') {
     hideSuccess();
     showError();
     setTimeout(() => hideError(), 3000);
@@ -102,8 +104,15 @@ function addAnime(e) {
     showSuccess();
     setTimeout(() => hideSuccess(), 3000);
 
-    const id = animeList.length + 1;
-    const title = titleInput.value;
+    // Capitalize each word of the title
+    const words = titleInput.value.split(" ");
+    for(let i = 0; i < words.length; i++) {
+      words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    }
+
+    // const id = animeList.length + 1;
+    const id = wordToHash(words.join(" "));
+    const title = words.join(" ");
     const episodes = episodesInput.value;
     const score = scoreInput.value;
     animeList.push({id, title, episodes, score});
@@ -115,6 +124,19 @@ function addAnime(e) {
     statusInput.value = '';
     scoreInput.value = '';
   }
+}
+
+function wordToHash(word) {
+  let hash = 0, n = word.length;
+  if(n == 0) {
+    return hash;
+  }
+  for(let i = 0; i < n; i++) {
+    letter = word.charCodeAt(i);
+    hash = ((hash << 5) - hash) + letter;
+    hash = hash & hash;
+  }
+  return hash;
 }
 
 function showError() {
@@ -143,10 +165,9 @@ function hideSuccess() {
 
 function updateAnimeList() {
   tableBody.innerHTML = '';
-  for (let i = animeList.length - 1; i >= 0; i--) {
+  for(let i = animeList.length - 1; i >= 0; i--) {
     const tr = document.createElement('tr');
-    animeList[i].id = i + 1;
-    tr.innerHTML = `<td>${animeList[i].id}</td>
+    tr.innerHTML = `<td>${i+1}</td>
     <td>${animeList[i].title}</td>
     <td>${animeList[i].episodes}</td>
     <td>${animeList[i].score}</td>
@@ -160,7 +181,7 @@ function updateAnimeList() {
 
 // Prompt user before removing a row
 tableBody.addEventListener('click', (e) => {
-  if (e.target.classList.contains('btn-danger')) {
+  if(e.target.classList.contains('btn-danger')) {
     currentRow = e; 
   }
 });
