@@ -43,15 +43,7 @@
 				<!-- Episodes -->
 				<div class="mb-3 mt-3">
 					<label for="episodes">Episodes</label>
-					<input type="text" class="form-control" id="episodes" placeholder="Enter no. of episodes watched" name="episodes">
-				</div>
-				<!-- Status -->
-				<div class="mb-3 mt-3">
-					<label for="status">Status</label>
-					<select class="form-select" id="status">
-						<option>Completed</option>
-						<option>Dropped</option>
-					</select>
+					<input type="number" class="form-control" id="episodes" placeholder="Enter no. of episodes watched" name="episodes">
 				</div>
 				<!-- Score -->
 				<div class="mb-3 mt-3">
@@ -91,13 +83,48 @@
 			</table>
 		</div>
 
+		<!-- Update Modal -->
+		<div class="modal fade" id="updateModal">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Update Anime</h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+						</button>
+					</div>
+
+					<!-- Modal Body -->
+					<div class="modal-body">
+						<form id="update-anime-form">
+							<label for="update-title-input">Title</label>
+							<input type="text" class="form-control mb-3" id="update-title-input">
+							<label for="update-episodes-input">Episodes</label>
+							<input type="number" class="form-control mb-3" id="update-episodes-input">
+							<label for="update-score-input">Score</label>
+							<select class="form-select" id="update-score-input"></select>
+						</form>
+					</div>
+
+					<!-- Modal Footer -->
+					<div class="modal-footer">
+						<button type="button" id="save-update-btn" class="btn btn-outline-secondary">Save Changes</button>
+						<button type="button" id="cancel-update-btn" class="btn btn-outline-secondary">Cancel</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- Remove Modal -->
 		<div class="modal fade" id="removeModal">
 			<div class="modal-dialog modal-dialog-centered">
 				<div class="modal-content">
 
 					<!-- Modal Header -->
 					<div class="modal-header">
-						<h4 class="modal-title">Confirmation</h4>
+						<h4 class="modal-title">Remove Anime</h4>
 						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 						</button>
 					</div>
